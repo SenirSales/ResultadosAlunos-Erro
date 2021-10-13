@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ResultadosAlunosMVC.Models
 {
-    public class Alunos
+    public class AlunoModel
     {
         public int Id { get; set; }
 
@@ -16,5 +16,7 @@ namespace ResultadosAlunosMVC.Models
         public string Nome { get; set; }
         public int Id_Notas { get; set; }
         public int Id_Faltas { get; set; }
+
+        //public List<Nota> Notas { get; set; }
     }
 }

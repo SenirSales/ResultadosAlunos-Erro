@@ -9,22 +9,22 @@ using ResultadosAlunosMVC.Models;
 
 namespace ResultadosAlunosMVC.Controllers
 {
-    public class AlunosController : Controller
+    public class AlunoController : Controller
     {
         private readonly Context _context;
 
-        public AlunosController(Context context)
+        public AlunoController(Context context)
         {
             _context = context;
         }
 
-        // GET: Alunos
+        // GET: Aluno
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Alunos.ToListAsync());
+            return View(await _context.DboAluno.ToListAsync());
         }
 
-        // GET: Alunos/Details/5
+        // GET: Aluno/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace ResultadosAlunosMVC.Controllers
                 return NotFound();
             }
 
-            var alunos = await _context.Alunos
+            var alunoModel = await _context.DboAluno
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (alunos == null)
+            if (alunoModel == null)
             {
                 return NotFound();
             }
 
-            return View(alunos);
+            return View(alunoModel);
         }
 
-        // GET: Alunos/Create
+        // GET: Aluno/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Alunos/Create
+        // POST: Aluno/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Id_Notas,Id_Faltas")] Alunos alunos)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Id_Notas,Id_Faltas")] AlunoModel alunoModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(alunos);
+                _context.Add(alunoModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(alunos);
+            return View(alunoModel);
         }
 
-        // GET: Alunos/Edit/5
+        // GET: Aluno/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace ResultadosAlunosMVC.Controllers
                 return NotFound();
             }
 
-            var alunos = await _context.Alunos.FindAsync(id);
-            if (alunos == null)
+            var alunoModel = await _context.DboAluno.FindAsync(id);
+            if (alunoModel == null)
             {
                 return NotFound();
             }
-            return View(alunos);
+            return View(alunoModel);
         }
 
-        // POST: Alunos/Edit/5
+        // POST: Aluno/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Id_Notas,Id_Faltas")] Alunos alunos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Id_Notas,Id_Faltas")] AlunoModel alunoModel)
         {
-            if (id != alunos.Id)
+            if (id != alunoModel.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace ResultadosAlunosMVC.Controllers
             {
                 try
                 {
-                    _context.Update(alunos);
+                    _context.Update(alunoModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AlunosExists(alunos.Id))
+                    if (!AlunoModelExists(alunoModel.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace ResultadosAlunosMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(alunos);
+            return View(alunoModel);
         }
 
-        // GET: Alunos/Delete/5
+        // GET: Aluno/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace ResultadosAlunosMVC.Controllers
                 return NotFound();
             }
 
-            var alunos = await _context.Alunos
+            var alunoModel = await _context.DboAluno
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (alunos == null)
+            if (alunoModel == null)
             {
                 return NotFound();
             }
 
-            return View(alunos);
+            return View(alunoModel);
         }
 
-        // POST: Alunos/Delete/5
+        // POST: Aluno/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var alunos = await _context.Alunos.FindAsync(id);
-            _context.Alunos.Remove(alunos);
+            var alunoModel = await _context.DboAluno.FindAsync(id);
+            _context.DboAluno.Remove(alunoModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AlunosExists(int id)
+        private bool AlunoModelExists(int id)
         {
-            return _context.Alunos.Any(e => e.Id == id);
+            return _context.DboAluno.Any(e => e.Id == id);
         }
     }
 }

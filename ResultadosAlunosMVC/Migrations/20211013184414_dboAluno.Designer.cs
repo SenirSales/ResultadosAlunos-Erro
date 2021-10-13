@@ -9,8 +9,8 @@ using ResultadosAlunosMVC.Models;
 namespace ResultadosAlunosMVC.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20211013022328_AlunosDB")]
-    partial class AlunosDB
+    [Migration("20211013184414_dboAluno")]
+    partial class dboAluno
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace ResultadosAlunosMVC.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ResultadosAlunosMVC.Models.Alunos", b =>
+            modelBuilder.Entity("ResultadosAlunosMVC.Models.AlunoModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,7 +40,7 @@ namespace ResultadosAlunosMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("DboAluno");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,7 +18,7 @@ namespace ResultadosAlunosMVC.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ResultadosAlunosMVC.Models.Alunos", b =>
+            modelBuilder.Entity("ResultadosAlunosMVC.Models.AlunoModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace ResultadosAlunosMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("DboAluno");
                 });
 #pragma warning restore 612, 618
         }

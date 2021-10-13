@@ -25,6 +25,7 @@ namespace ResultadosAlunosMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<Context>();
         }
 
